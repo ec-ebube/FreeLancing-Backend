@@ -30,39 +30,40 @@ namespace Backend.Services
         }
 
 
-        public /*async*/ Task<string> CreatePortfolio(Portfolio_DTO portfolio)
+        public async Task<string> CreatePortfolio(Portfolio_DTO portfolio)
         {
-            // var newPF = new Portfolio();
-            // if (await IsEmailExists(portfolio.Email!))
-            // {
-            //     string EmailExist = "Email is already in use";
-            //     return (EmailExist);
-            // }
-            // else
-            // {
-            //     newPF.Email = portfolio.Email;
-            // }
-            // newPF.FirstName = portfolio.FirstName;
-            // newPF.LastName = portfolio.LastName;
-            // newPF.Bio = portfolio.Bio;
-            // newPF.Skill = portfolio.Skill;
-            // if (await UsernameExist(portfolio.UserName!))
-            // {
-            //     string UserExists = "This UserName is already in Use";
-            //     return (UserExists);
-            // }
-            // else
-            // {
-            //     newPF.UserName = portfolio.UserName;
-            // }
-            // newPF.ProfilePhoto = portfolio.ProfilePhoto;
+            var newPF = new Portfolio();
+            if (await IsEmailExists(portfolio.Email!))
+            {
+                string EmailExist = "Email is already in use";
+                return (EmailExist);
+            }
+            else
+            {
+                newPF.Email = portfolio.Email;
+            }
+            newPF.FirstName = portfolio.FirstName;
+            newPF.LastName = portfolio.LastName;
+            newPF.Bio = portfolio.Bio;
+            newPF.Skill = portfolio.Skill;
+            if (await UsernameExist(portfolio.UserName!))
+            {
+                string UserExists = "This UserName is already in Use";
+                return (UserExists);
+            }
+            else
+            {
+                newPF.UserName = portfolio.UserName;
+            }
+            newPF.ProfilePhoto = ;
 
-            // var res = await _leContext!.Portfolio.AddAsync(newPF);
-            //     if (res == null)
-            //     {
-            //         throw new Exception("something went wrong");
-            //     }
-            throw new NotImplementedException();
+            var res = await _leContext!.Portfolios.AddAsync(newPF);
+            if (res == null)
+            {
+                throw new Exception("something went wrong");
+            }
+            _leContext!.SaveChanges();
+            return "Portfolio Created Successfuly";
         }
 
         public Task<string> DeletePortfolio(string id)
