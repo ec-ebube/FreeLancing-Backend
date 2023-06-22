@@ -6,15 +6,19 @@ using Backend.DTO;
 using Backend.Models;
 using Backend.Repo;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
+
 
 namespace Backend.Services
 {
     public class PortfolioServices : IPortfolio
     {
         private readonly LE_dbContext _leContext;
-        public PortfolioServices(LE_dbContext leContext)
+        private readonly IPortfolio _profileservice;
+        public PortfolioServices(LE_dbContext leContext, IPortfolio profileservice)
         {
             _leContext = leContext;
+            _profileservice = profileservice;
         }
 
         ///////////////////////////////////////////////////////////////
@@ -46,6 +50,7 @@ namespace Backend.Services
             newPF.LastName = portfolio.LastName;
             newPF.Bio = portfolio.Bio;
             newPF.Skill = portfolio.Skill;
+            newPF.PasswordHash = BCrypt.Net.BCrypt.HashPassword(portfolio.Password);
             if (await UsernameExist(portfolio.UserName!))
             {
                 string UserExists = "This UserName is already in Use";
@@ -55,7 +60,16 @@ namespace Backend.Services
             {
                 newPF.UserName = portfolio.UserName;
             }
-            newPF.ProfilePhoto = ;
+
+            // var ProfilePath = Path.Combine(Directory.GetCurrentDirectory());
+            // Console.WriteLine(ProfilePath);
+            // newPF.ProfilePhoto = Path.Combine(filename, portfolio.ProfilePhoto);
+
+            if (portfolio.ProfilePhoto != null && portfolio.ProfilePhoto.Length > 0)
+            {
+                // portfolio.ProfilePath = portfolio.ProfilePhoto.ProfilePath;
+                _profileservice.ProcessProfilePhoto(portfolio.ProfilePhoto);
+            }
 
             var res = await _leContext!.Portfolios.AddAsync(newPF);
             if (res == null)
@@ -82,6 +96,11 @@ namespace Backend.Services
         }
 
         public Task<string> UpdatePortfolio(string id, Portfolio_DTO portfolio)
+        {
+            throw new NotImplementedException();
+        }
+
+        public void ProcessProfilePhoto(IFormFile profilePicture)
         {
             throw new NotImplementedException();
         }

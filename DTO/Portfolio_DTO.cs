@@ -9,10 +9,22 @@ namespace Backend.DTO
 {
     public class Portfolio_DTO
     {
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        [RegularExpression(@"^([A-Za-z-.']+)$", ErrorMessage = "format not accepted")]
         public string? FirstName { get; set; }
+        [Required]
+        [StringLength(50, MinimumLength = 2)]
+        [RegularExpression(@"^([A-Za-z-.']+)$", ErrorMessage = "format not accepted")]
         public string? LastName { get; set; }
+        [Required]
+        [RegularExpression(@"^[^@\s]+@[^@\s]+\.(com|net|org|gov)$", ErrorMessage = "Invalid Email pattern.")]
+        [MaxLength(50)]
         public string? Email { get; set; }
         public DateTime DoB { get; set; }
+        [MaxLength(100)]
+        [StringLength(100, MinimumLength = 6)]
+        public string? Password { get; set; }
         public string? UserName { get; set; }
         [NotMapped]
         public IFormFile? ProfilePhoto { get; set; }
