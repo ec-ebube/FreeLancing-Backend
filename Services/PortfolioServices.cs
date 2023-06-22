@@ -61,14 +61,15 @@ namespace Backend.Services
                 newPF.UserName = portfolio.UserName;
             }
 
-            // var ProfilePath = Path.Combine(Directory.GetCurrentDirectory());
-            // Console.WriteLine(ProfilePath);
-            // newPF.ProfilePhoto = Path.Combine(filename, portfolio.ProfilePhoto);
 
             if (portfolio.ProfilePhoto != null && portfolio.ProfilePhoto.Length > 0)
             {
-                // portfolio.ProfilePath = portfolio.ProfilePhoto.ProfilePath;
-                _profileservice.ProcessProfilePhoto(portfolio.ProfilePhoto);
+                // _profileservice.ProcessProfilePhoto(portfolio.ProfilePhoto);
+                var uniq = Guid.NewGuid();
+                var filepath = Path.Combine("wwwroot/Images/", uniq + ".jpg");
+                var fileStream = new FileStream(filepath, FileMode.Create);
+                portfolio.ProfilePhoto.CopyTo(fileStream);
+                newPF.ProfilePath = filepath;
             }
 
             var res = await _leContext!.Portfolios.AddAsync(newPF);
