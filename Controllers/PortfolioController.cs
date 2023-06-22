@@ -22,7 +22,7 @@ namespace Backend.Controllers
         [HttpPost("create")]
         public async Task<ActionResult> CreatePortfolio([FromForm] Portfolio_DTO portfolios)
         {
-            const string A = "Protfolio Created Successfully";
+            const string A = "Portfolio Created Successfuly";
             try
             {
                 if (ModelState.IsValid)
