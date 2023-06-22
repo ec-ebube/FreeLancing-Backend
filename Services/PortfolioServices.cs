@@ -100,10 +100,5 @@ namespace Backend.Services
         {
             throw new NotImplementedException();
         }
-
-        public void ProcessProfilePhoto(IFormFile profilePicture)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
