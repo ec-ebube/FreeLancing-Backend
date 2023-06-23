@@ -51,6 +51,7 @@ namespace Backend.Services
             newPF.Bio = portfolio.Bio;
             newPF.Skill = portfolio.Skill;
             newPF.PasswordHash = BCrypt.Net.BCrypt.HashPassword(portfolio.Password);
+            newPF.DoB = portfolio.DoB;
             if (await UsernameExist(portfolio.UserName!))
             {
                 string UserExists = "This UserName is already in Use";
@@ -71,6 +72,8 @@ namespace Backend.Services
                 portfolio.ProfilePhoto.CopyTo(fileStream);
                 newPF.ProfilePath = filepath;
             }
+            newPF.Created = DateTime.Now;
+            newPF.Modified = DateTime.Now;
 
             var res = await _leContext!.Portfolios.AddAsync(newPF);
             if (res == null)
