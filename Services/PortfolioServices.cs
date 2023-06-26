@@ -20,14 +20,14 @@ namespace Backend.Services
         }
 
         ///////////////////////////////////////////////////////////////
-       public async Task<bool> IsEmailExists(string Email)
+        public async Task<bool> IsEmailExists(string Email)
         {
-            var IsSeen = await _leContext!.Users.FirstOrDefaultAsync(e => e.Email == Email);
+            var IsSeen = await _leContext!.Portfolios.FirstOrDefaultAsync(e => e.Email == Email);
             return IsSeen != null!;
         }
         public async Task<bool> UsernameExist(string UserName)
         {
-            var UserSeen = await _leContext!.Users.FirstOrDefaultAsync(e => e.UserName == UserName);
+            var UserSeen = await _leContext!.Portfolios.FirstOrDefaultAsync(e => e.UserName == UserName);
             return UserSeen != null!;
         }
 
@@ -82,9 +82,23 @@ namespace Backend.Services
             return "Portfolio Created Successfuly";
         }
 
-        public Task<string> DeletePortfolio(string id)
+        public async Task<string> DeletePortfolio(string id)
         {
-            throw new NotImplementedException();
+           try
+           {
+             var portfolio = await _leContext!.Portfolios.FindAsync();
+             if (portfolio == null)
+             {
+                return "Portfolio not found";
+             }
+             _leContext!.Remove(portfolio);
+             _leContext!.SaveChanges();
+             return "Deleted";
+           }
+           catch (System.Exception ex)
+           {
+            return ex.Message;
+           }
         }
 
         public Task<Portfolio> GetPortfolio(string Username)
@@ -92,16 +106,20 @@ namespace Backend.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Portfolio>> GetPortfolios()
+        public async Task<IEnumerable<Portfolio>> GetPortfolios()
         {
             try
             {
-                throw new NotImplementedException();
+                var portfolios = await _leContext!.Portfolios.OrderByDescending(x => x.UserName).ToListAsync();
+                if (portfolios.Count == 0)
+                {
+                    return null!;
+                }
+                return portfolios;
             }
             catch (System.Exception)
             {
-                
-                throw;
+                return null!;
             }
         }
 

@@ -45,5 +45,45 @@ namespace Backend.Controllers
 
         }
 
+        [HttpGet("getall")]
+        public async Task<ActionResult> GetPortfolios()
+        {
+            try
+            {
+                var portfolios = await _iportfolio!.GetPortfolios();
+                if (portfolios.ToList().Count == 0)
+                {
+                    throw new Exception("Non Found");
+                }
+                return Ok(portfolios);
+            }
+            catch (System.Exception  ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<ActionResult> DeletePortfolio([FromRoute] string id)
+        {
+            try
+            {
+                var portfolio = await _iportfolio!.DeletePortfolio(id);
+            if (portfolio == "Deleted")
+            {
+                return Ok("Deleted");
+            }
+            if (portfolio == "Portfolio not found")
+            {
+                return NotFound();
+            }
+            return BadRequest();
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }
