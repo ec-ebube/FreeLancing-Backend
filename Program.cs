@@ -25,6 +25,7 @@ options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoop
 
 
 builder.Services.AddScoped<IUser, UserServices>();
+builder.Services.AddScoped<IPortfolio, PortfolioServices>();
 
 
 builder.Services.AddControllers();

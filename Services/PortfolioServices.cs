@@ -14,15 +14,13 @@ namespace Backend.Services
     public class PortfolioServices : IPortfolio
     {
         private readonly LE_dbContext _leContext;
-        private readonly IPortfolio _profileservice;
-        public PortfolioServices(LE_dbContext leContext, IPortfolio profileservice)
+        public PortfolioServices(LE_dbContext leContext)
         {
             _leContext = leContext;
-            _profileservice = profileservice;
         }
 
         ///////////////////////////////////////////////////////////////
-        public async Task<bool> IsEmailExists(string Email)
+       public async Task<bool> IsEmailExists(string Email)
         {
             var IsSeen = await _leContext!.Users.FirstOrDefaultAsync(e => e.Email == Email);
             return IsSeen != null!;
@@ -96,7 +94,15 @@ namespace Backend.Services
 
         public Task<IEnumerable<Portfolio>> GetPortfolios()
         {
-            throw new NotImplementedException();
+            try
+            {
+                throw new NotImplementedException();
+            }
+            catch (System.Exception)
+            {
+                
+                throw;
+            }
         }
 
         public Task<string> UpdatePortfolio(string id, Portfolio_DTO portfolio)
