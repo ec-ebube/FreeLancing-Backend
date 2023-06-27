@@ -57,7 +57,7 @@ namespace Backend.Controllers
                 }
                 return Ok(portfolios);
             }
-            catch (System.Exception  ex)
+            catch (System.Exception ex)
             {
                 return BadRequest(ex.Message);
             }
@@ -69,15 +69,15 @@ namespace Backend.Controllers
             try
             {
                 var portfolio = await _iportfolio!.DeletePortfolio(id);
-            if (portfolio == "Deleted")
-            {
-                return Ok("Deleted");
-            }
-            if (portfolio == "Portfolio not found")
-            {
-                return NotFound();
-            }
-            return BadRequest();
+                if (portfolio == "Deleted")
+                {
+                    return Ok("Deleted");
+                }
+                if (portfolio == "Portfolio not found")
+                {
+                    return NotFound();
+                }
+                return BadRequest();
             }
             catch (System.Exception ex)
             {
@@ -85,7 +85,7 @@ namespace Backend.Controllers
             }
         }
 
-        [HttpGet("GSP/{username}")]
+        [HttpGet("get/{username}")]
         public async Task<ActionResult> GetPortfolio([FromRoute] string Username)
         {
             try
@@ -100,6 +100,28 @@ namespace Backend.Controllers
             catch (System.Exception)
             {
                 return null!;
+            }
+        }
+
+        [HttpPatch("update/{id}")]
+        public async Task<ActionResult> UpdatePortfolio([FromForm] Portfolio_DTO portfolios, [FromRoute] string id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var portfolio = await _iportfolio!.UpdatePortfolio(id, portfolios);
+                    if (portfolio == "Updated Successfully")
+                    {
+                        return Ok(portfolio);
+                    }
+                    return BadRequest(portfolio);
+                }
+                return BadRequest("An Error occured");
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
 

@@ -63,7 +63,6 @@ namespace Backend.Services
 
             if (portfolio.ProfilePhoto != null && portfolio.ProfilePhoto.Length > 0)
             {
-                // _profileservice.ProcessProfilePhoto(portfolio.ProfilePhoto);
                 var uniq = Guid.NewGuid();
                 var filepath = Path.Combine("wwwroot/Images/", uniq + ".jpg");
                 var fileStream = new FileStream(filepath, FileMode.Create);
@@ -84,21 +83,21 @@ namespace Backend.Services
 
         public async Task<string> DeletePortfolio(string id)
         {
-           try
-           {
-             var portfolio = await _leContext!.Portfolios.FindAsync(id);
-             if (portfolio == null)
-             {
-                return "Portfolio not found";
-             }
-             _leContext!.Remove(portfolio);
-             _leContext!.SaveChanges();
-             return "Deleted";
-           }
-           catch (System.Exception ex)
-           {
-            return ex.Message;
-           }
+            try
+            {
+                var portfolio = await _leContext!.Portfolios.FindAsync(id);
+                if (portfolio == null)
+                {
+                    return "Portfolio not found";
+                }
+                _leContext!.Remove(portfolio);
+                _leContext!.SaveChanges();
+                return "Deleted";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public async Task<Portfolio> GetPortfolio(string Username)
@@ -136,9 +135,53 @@ namespace Backend.Services
             }
         }
 
-        public Task<string> UpdatePortfolio(string id, Portfolio_DTO portfolio)
+        public async Task<string> UpdatePortfolio(string id, Portfolio_DTO portfolio)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var editPF = await _leContext!.Portfolios.FindAsync(id);
+                var uniq = Guid.NewGuid();
+                var filepath = Path.Combine("wwwroot/Images/", uniq + ".jpg");
+                var fileStream = new FileStream(filepath, FileMode.Create);
+                portfolio.ProfilePhoto!.CopyTo(fileStream);
+                editPF!.ProfilePath = filepath;
+
+                editPF.FirstName = portfolio.FirstName;
+                editPF.LastName = portfolio.LastName;
+                editPF.Bio = portfolio.Bio;
+                editPF.Skill = portfolio.Skill;
+                editPF.DoB = portfolio.DoB;
+                // editPF.Email = portfolio.Email;
+                // editPF.UserName = portfolio.UserName;
+                if (await IsEmailExists(portfolio.Email!))
+                {
+                    string EmailExist = "Email is already in use";
+                    return (EmailExist);
+                } else
+                {
+                    editPF.Email = portfolio.Email;
+                }
+                if (await UsernameExist(portfolio.UserName!))
+                {
+                    string EmailExist = "Username is already in use";
+                    return (EmailExist);
+                }
+                else
+                {
+                    editPF.UserName = portfolio.UserName;
+                }
+                editPF.Modified = DateTime.Now;
+
+                _leContext!.Portfolios.Attach(editPF);
+                _leContext!.SaveChanges();
+                return "Updated Successfully";
+
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
+
         }
     }
 }
