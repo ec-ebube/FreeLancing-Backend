@@ -85,5 +85,23 @@ namespace Backend.Controllers
             }
         }
 
+        [HttpGet("GSP/{username}")]
+        public async Task<ActionResult> GetPortfolio([FromRoute] string Username)
+        {
+            try
+            {
+                var portfolio = await _iportfolio!.GetPortfolio(Username);
+                if (portfolio == null)
+                {
+                    return NotFound();
+                }
+                return Ok(portfolio);
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
+        }
+
     }
 }

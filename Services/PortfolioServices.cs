@@ -86,7 +86,7 @@ namespace Backend.Services
         {
            try
            {
-             var portfolio = await _leContext!.Portfolios.FindAsync();
+             var portfolio = await _leContext!.Portfolios.FindAsync(id);
              if (portfolio == null)
              {
                 return "Portfolio not found";
@@ -101,9 +101,22 @@ namespace Backend.Services
            }
         }
 
-        public Task<Portfolio> GetPortfolio(string Username)
+        public async Task<Portfolio> GetPortfolio(string Username)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var portfolio = await _leContext!.Portfolios.FirstOrDefaultAsync(p => p.UserName == Username);
+                if (portfolio == null)
+                {
+                    return null!;
+                }
+                // var dPortfolio = _leContext!.Portfolios.FirstOrDefault();
+                return portfolio!;
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
         }
 
         public async Task<IEnumerable<Portfolio>> GetPortfolios()
