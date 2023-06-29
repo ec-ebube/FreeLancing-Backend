@@ -9,10 +9,10 @@ namespace Backend.Repo
 {
     public interface IProject
     {
-        public Task<IEnumerable<Project>> GetActivities();
-        public Task<Project> GetActivity(string id);
-        public Task<string> CreateActivity(Project_DTO project);
-        public Task<string> UpdateActivity(string id, Project_DTO project);
-        public Task<string> DeleteActivity(string id);
+        public Task<IEnumerable<Project>> GetProjects();
+        public Task<Project> GetProject(string id);
+        public Task<string> CreateProject(Project_DTO project);
+        public Task<string> UpdateProject(string id, Project_DTO project);
+        public Task<string> DeleteProject(string id);
     }
 }

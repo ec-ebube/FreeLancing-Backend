@@ -73,10 +73,10 @@ namespace Backend.Services
             newPF.Modified = DateTime.Now;
 
             var res = await _leContext!.Portfolios.AddAsync(newPF);
-            if (res == null)
-            {
-                throw new Exception("something went wrong");
-            }
+            // if (res == null)
+            // {
+            //     throw new Exception("something went wrong");
+            // }
             _leContext!.SaveChanges();
             return "Portfolio Created Successfuly";
         }
@@ -157,7 +157,8 @@ namespace Backend.Services
                 {
                     string EmailExist = "Email is already in use";
                     return (EmailExist);
-                } else
+                }
+                else
                 {
                     editPF.Email = portfolio.Email;
                 }
