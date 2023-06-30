@@ -12,11 +12,11 @@ namespace Backend.Models
         public string? Id { get; set; }
         public string? Portfolio_Id { get; set; }
         [Required]
-        [StringLength(10, MinimumLength = 6)]
+        [StringLength(30, MinimumLength = 2)]
         [RegularExpression(@"^([A-Za-z-.']+)$", ErrorMessage = "format not accepted")]
         public string? Title { get; set; }
         [Required]
-        [StringLength(40, MinimumLength = 6)]
+        [StringLength(100, MinimumLength = 2)]
         [RegularExpression(@"^([A-Za-z-.']+)$", ErrorMessage = "format not accepted")]
         public string? Description { get; set; }
         [NotMapped]
