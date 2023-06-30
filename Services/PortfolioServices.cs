@@ -122,7 +122,7 @@ namespace Backend.Services
         {
             try
             {
-                var portfolios = await _leContext!.Portfolios.OrderByDescending(x => x.UserName).ToListAsync();
+                var portfolios = await _leContext!.Portfolios.OrderBy(x => x.UserName).ToListAsync();
                 if (portfolios.Count == 0)
                 {
                     return null!;

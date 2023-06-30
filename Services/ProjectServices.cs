@@ -10,7 +10,7 @@ namespace Backend.Services
 {
     public class ProjectServices : IProject
     {
-         private readonly LE_dbContext? _leContext;
+        private readonly LE_dbContext? _leContext;
         public ProjectServices(LE_dbContext leContext)
         {
             _leContext = leContext;
@@ -29,15 +29,15 @@ namespace Backend.Services
                 if (project.ProjectImage != null && project.ProjectImage.Length > 0)
                 {
                     var imgid = Guid.NewGuid();
-                    var photopath = Path.Combine("wwwroot/Projects/Images"+imgid+"jpg");
+                    var photopath = Path.Combine("wwwroot/Projects/Images" + imgid + "jpg");
                     var photoStream = new FileStream(photopath, FileMode.Create);
                     project.ProjectImage!.CopyTo(photoStream);
                     newpj.ProjectImagePath = photopath;
                 }
-                else
+                if (project.ProjectVideo != null && project.ProjectVideo.Length > 0)
                 {
                     var vidid = Guid.NewGuid();
-                    var vidpath = Path.Combine("wwwroot/Projects/Videos"+vidid+"mp4");
+                    var vidpath = Path.Combine("wwwroot/Projects/Videos" + vidid + "mp4");
                     var vidStream = new FileStream(vidpath, FileMode.Create);
                     project.ProjectVideo!.CopyTo(vidStream);
                     newpj.ProjectVideoPath = vidpath;

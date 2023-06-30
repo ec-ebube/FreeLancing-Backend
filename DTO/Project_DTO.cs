@@ -12,13 +12,7 @@ namespace Backend.DTO
     {
         // public Guid Id { get; set; }
         public string? Portfolio_Id { get; set; }
-        [Required]
-        [StringLength(30, MinimumLength = 2)]
-        [RegularExpression(@"^([A-Za-z-.']+)$", ErrorMessage = "format not accepted")]
         public string? Title { get; set; }
-         [Required]
-        [StringLength(100, MinimumLength = 2)]
-        [RegularExpression(@"^([A-Za-z-.']+)$", ErrorMessage = "format not accepted")]
         public string? Description { get; set; }
         [NotMapped]
         public IFormFile? ProjectImage { get; set; }
@@ -26,7 +20,6 @@ namespace Backend.DTO
         [NotMapped]
         public IFormFile? ProjectVideo { get; set; }
         public string? ProjectVideoPath { get; set; }
-        public Portfolio? Portfolio { get; set; }
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
     }
