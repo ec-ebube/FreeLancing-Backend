@@ -110,9 +110,43 @@ namespace Backend.Services
             }
         }
 
-        public Task<string> UpdateProject(string id, Project_DTO project)
+        public async Task<string> UpdateProject(string Id, Project_DTO project)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var editPJ = await _leContext!.projects.FindAsync(Id);
+                editPJ.Title = project.Title;
+                editPJ.Description = project.Description;
+
+                if (project.ProjectImage != null && project.ProjectImage.Length > 0)
+                {
+                    var imgid = Guid.NewGuid();
+                    var photopath = Path.Combine("wwwroot/Projects/Images/" + imgid + ".jpg");
+                    var photoStream = new FileStream(photopath, FileMode.Create);
+                    project.ProjectImage!.CopyTo(photoStream);
+                    editPJ.ProjectImagePath = photopath;
+                    editPJ.ProjectVideoPath = null!;
+                }
+                if (project.ProjectVideo != null && project.ProjectVideo.Length > 0)
+                {
+                    var vidid = Guid.NewGuid();
+                    var vidpath = Path.Combine("wwwroot/Projects/Videos/" + vidid + ".mp4");
+                    var vidStream = new FileStream(vidpath, FileMode.Create);
+                    project.ProjectVideo!.CopyTo(vidStream);
+                    editPJ.ProjectVideoPath = vidpath;
+                    editPJ.ProjectImagePath = null!;
+                }
+                editPJ.Modified = DateTime.Now;
+
+                _leContext!.projects.Attach(editPJ);
+                _leContext!.SaveChanges();
+                
+                return "Successfully Changed";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
         }
     }
 }

@@ -15,5 +15,6 @@ namespace Backend.Models
         public DbSet<User> Users { get; set; } = null!;
         public DbSet<Portfolio> Portfolios { get; set; } = null!;
         public DbSet<Project> projects { get; set; } = null!;
+        public DbSet<Review> Reviews { get; set; } = null!;
     }
 }

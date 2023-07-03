@@ -100,5 +100,27 @@ namespace Backend.Controllers
                 return null!;
             }
         }
+
+        [HttpPatch("update/{id}")]
+        public async Task<ActionResult> UpdateProject([FromForm] Project_DTO projects, [FromRoute] string id)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+                    var project = await _iproject!.UpdateProject(id, projects);
+                    if (project == "Successfully Changed")
+                    {
+                        return Ok(project);
+                    }
+                    return BadRequest(project);
+                }
+                return BadRequest("Error, Please try again later");
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
