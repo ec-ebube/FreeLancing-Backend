@@ -20,27 +20,27 @@ namespace Backend.Services
 
         public Task<string> CreateReview(Review_DTO review)
         {
-            return NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task<string> DeleteReview(string id)
         {
-            return NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task<IEnumerable<Review>> GetReviews()
         {
-            return NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task<Review> GetReview(string Id)
         {
-            return NotImplementedException();
+            throw new NotImplementedException();
         }
 
         public Task<string> UpdateReview(string Id, Review_DTO review)
         {
-            return NotImplementedException();
+            throw new NotImplementedException();
         }
         
     }
