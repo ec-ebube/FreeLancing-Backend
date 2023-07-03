@@ -6,6 +6,7 @@ using Backend.DTO;
 using Backend.Models;
 using Backend.Repo;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Http;
 
 namespace Backend.Services
 {
@@ -92,16 +93,16 @@ namespace Backend.Services
             }
         }
 
-        public async Task<Project> GetProject(string id)
+        public async Task<Project> GetProject(string Id)
         {
             try
             {
-                var project = await _leContext!.projects.FirstorDefaultAsync(id);
+                var project = await _leContext!.projects.FindAsync(Id);
                 if (project == null)
                 {
                     return null!;
                 }
-                return Ok(Project);
+                return project!;
             }
             catch (System.Exception)
             {

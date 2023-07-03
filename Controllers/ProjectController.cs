@@ -91,9 +91,9 @@ namespace Backend.Controllers
                 var project = await _iproject!.GetProject(id);
                 if (project == null)
                 {
-                    return null!;
+                    return NotFound();
                 }
-                return project;
+                return Ok(project);
             }
             catch (System.Exception)
             {

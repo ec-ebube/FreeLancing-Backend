@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "O0DPXzE+z2QysQxpa8FN2vVq2gaeRKimiKc7mTNF0jI=",
+  "Hash": "mB4BaFlDG254gNdky64Ysc1GhezrjpR7cc9dnIh4HUk=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
@@ -51,6 +51,23 @@
       "OriginalItemSpec": "wwwroot\\Images\\f841bfed-58b8-468c-8843-364708d8d533.jpg"
     },
     {
+      "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Projects\\Images\\41529235-9d2b-47e5-b440-2e33d9538336.jpg",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "Projects/Images/41529235-9d2b-47e5-b440-2e33d9538336.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Projects\\Images\\41529235-9d2b-47e5-b440-2e33d9538336.jpg"
+    },
+    {
       "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Projects\\Images\\e7859ba8-7ed8-45bc-91fc-7988914e11da.jpg",
       "SourceId": "Backend",
       "SourceType": "Discovered",
@@ -83,6 +100,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Projects\\Videos\\1b21176d-3cd7-4cd3-bf87-5fe2eff1a54b.mp4"
+    },
+    {
+      "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Projects\\Videos\\1c957ba7-cf61-4162-9d10-bb17ea4e5c6f.mp4",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "Projects/Videos/1c957ba7-cf61-4162-9d10-bb17ea4e5c6f.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Projects\\Videos\\1c957ba7-cf61-4162-9d10-bb17ea4e5c6f.mp4"
     }
   ]
 }
