@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Backend.DTO;
 using Backend.Models;
 using Backend.Repo;
+using Microsoft.EntityFrameworkCore;
 
 namespace Backend.Services
 {
@@ -29,7 +30,7 @@ namespace Backend.Services
                 if (project.ProjectImage != null && project.ProjectImage.Length > 0)
                 {
                     var imgid = Guid.NewGuid();
-                    var photopath = Path.Combine("wwwroot/Projects/Images" + imgid + "jpg");
+                    var photopath = Path.Combine("wwwroot/Projects/Images/" + imgid + ".jpg");
                     var photoStream = new FileStream(photopath, FileMode.Create);
                     project.ProjectImage!.CopyTo(photoStream);
                     newpj.ProjectImagePath = photopath;
@@ -37,7 +38,7 @@ namespace Backend.Services
                 if (project.ProjectVideo != null && project.ProjectVideo.Length > 0)
                 {
                     var vidid = Guid.NewGuid();
-                    var vidpath = Path.Combine("wwwroot/Projects/Videos" + vidid + "mp4");
+                    var vidpath = Path.Combine("wwwroot/Projects/Videos/" + vidid + ".mp4");
                     var vidStream = new FileStream(vidpath, FileMode.Create);
                     project.ProjectVideo!.CopyTo(vidStream);
                     newpj.ProjectVideoPath = vidpath;
@@ -55,19 +56,57 @@ namespace Backend.Services
             }
         }
 
-        public Task<string> DeleteProject(string id)
+        public async Task<string> DeleteProject(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var project = await _leContext!.projects.FindAsync(id);
+                if (project == null)
+                {
+                    return "Project not found";
+                }
+                _leContext!.Remove(project);
+                _leContext!.SaveChanges();
+                return "Deleted Successfully";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
-        public Task<IEnumerable<Project>> GetProjects()
+        public async Task<IEnumerable<Project>> GetProjects()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var projects = await _leContext!.projects.OrderByDescending(x => x.Created).ToListAsync();
+                if (projects == null)
+                {
+                    return null!;
+                }
+                return projects;
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
         }
 
-        public Task<Project> GetProject(string id)
+        public async Task<Project> GetProject(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var project = await _leContext!.projects.FirstorDefaultAsync(id);
+                if (project == null)
+                {
+                    return null!;
+                }
+                return Ok(Project);
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
         }
 
         public Task<string> UpdateProject(string id, Project_DTO project)

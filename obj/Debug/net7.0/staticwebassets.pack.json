@@ -9,6 +9,14 @@
       "PackagePath": "staticwebassets\\Images\\f841bfed-58b8-468c-8843-364708d8d533.jpg"
     },
     {
+      "Id": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Projects\\Images\\e7859ba8-7ed8-45bc-91fc-7988914e11da.jpg",
+      "PackagePath": "staticwebassets\\Projects\\Images\\e7859ba8-7ed8-45bc-91fc-7988914e11da.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Projects\\Videos\\1b21176d-3cd7-4cd3-bf87-5fe2eff1a54b.mp4",
+      "PackagePath": "staticwebassets\\Projects\\Videos\\1b21176d-3cd7-4cd3-bf87-5fe2eff1a54b.mp4"
+    },
+    {
       "Id": "obj\\Debug\\net7.0\\staticwebassets\\msbuild.Backend.Microsoft.AspNetCore.StaticWebAssets.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
     },
