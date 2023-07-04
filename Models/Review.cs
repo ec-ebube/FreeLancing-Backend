@@ -12,5 +12,7 @@ namespace Backend.Models
        public string? UorP_Id { get; set; }
        public int Rating { get; set; }
        public string? Comment { get; set; }
+       public DateTime Created { get; set; }
+       public DateTime Modified { get; set; }
     }
 }

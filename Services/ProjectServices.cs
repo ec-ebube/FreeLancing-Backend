@@ -115,7 +115,7 @@ namespace Backend.Services
             try
             {
                 var editPJ = await _leContext!.projects.FindAsync(Id);
-                editPJ.Title = project.Title;
+                editPJ!.Title = project.Title;
                 editPJ.Description = project.Description;
 
                 if (project.ProjectImage != null && project.ProjectImage.Length > 0)

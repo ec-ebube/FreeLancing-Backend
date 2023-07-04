@@ -18,9 +18,29 @@ namespace Backend.Services
             _leContext = leContext;
         }
 
-        public Task<string> CreateReview(Review_DTO review)
+        public async Task<string> CreateReview(Review_DTO review)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var newrv = new Review();
+                var id = Guid.NewGuid();
+                newrv.Id = id.ToString();
+                newrv.Portfolio_Id = review.Portfolio_Id;
+                newrv.UorP_Id = review.UorP_Id;
+                newrv.Rating = review.Rating;
+                newrv.Comment = review.Comment;
+                newrv.Created = DateTime.Now;
+                newrv.Modified = DateTime.Now;
+
+                await _leContext!.Reviews.AddAsync(newrv);
+                _leContext!.SaveChanges();
+
+                return "Successful";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public Task<string> DeleteReview(string id)
@@ -28,9 +48,21 @@ namespace Backend.Services
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Review>> GetReviews()
+        public async Task<IEnumerable<Review>> GetReviews()
         {
-            throw new NotImplementedException();
+            try
+            {
+                var review = await _leContext!.Reviews.OrderByDescending(x => x.Created).ToListAsync();
+                if (review == null)
+                {
+                    return null!;
+                }
+                return review;
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
         }
 
         public Task<Review> GetReview(string Id)
@@ -42,6 +74,6 @@ namespace Backend.Services
         {
             throw new NotImplementedException();
         }
-        
+
     }
 }
