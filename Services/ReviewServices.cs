@@ -43,9 +43,25 @@ namespace Backend.Services
             }
         }
 
-        public Task<string> DeleteReview(string id)
+        public async Task<string> DeleteReview(string id)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var review = await _leContext!.Reviews.FindAsync(id);
+                if (review == null)
+                {
+                    return "Not Found";
+                }
+
+                _leContext!.Reviews.Remove(review);
+                _leContext!.SaveChanges();
+
+                return "deleted";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
         public async Task<IEnumerable<Review>> GetReviews()
@@ -70,9 +86,23 @@ namespace Backend.Services
             throw new NotImplementedException();
         }
 
-        public Task<string> UpdateReview(string Id, Review_DTO review)
+        public async Task<string> UpdateReview(string Id, Review_DTO review)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var editrv = await _leContext!.Reviews.FindAsync(Id);
+                editrv!.Rating = review.Rating;
+                editrv.Comment = review.Comment;
+                editrv.Modified = DateTime.Now;
+
+                _leContext!.Reviews.Attach(editrv);
+                _leContext!.SaveChanges();
+                return "Changed";
+            }
+            catch (System.Exception ex)
+            {
+                return ex.Message;
+            }
         }
 
     }
