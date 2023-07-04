@@ -25,6 +25,8 @@ namespace Backend.Models
         [MaxLength(150)]
         public string? Bio { get; set; }
         public string? Skill { get; set; }
+        public string? Category { get; set; }
+        public string? Pricing { get; set; }
         public DateTime Created { get; set; }
         public DateTime Modified { get; set; }
     }

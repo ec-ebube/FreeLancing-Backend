@@ -50,6 +50,8 @@ namespace Backend.Services
             newPF.Skill = portfolio.Skill;
             newPF.PasswordHash = BCrypt.Net.BCrypt.HashPassword(portfolio.Password);
             newPF.DoB = portfolio.DoB;
+            newPF.Category = portfolio.Category;
+            newPF.Pricing = portfolio.Pricing;
             if (await UsernameExist(portfolio.UserName!))
             {
                 string UserExists = "This UserName is already in Use";
@@ -151,8 +153,8 @@ namespace Backend.Services
                 editPF.Bio = portfolio.Bio;
                 editPF.Skill = portfolio.Skill;
                 editPF.DoB = portfolio.DoB;
-                // editPF.Email = portfolio.Email;
-                // editPF.UserName = portfolio.UserName;
+                editPF.Category = portfolio.Category;
+                editPF.Pricing = portfolio.Pricing;
                 if (await IsEmailExists(portfolio.Email!))
                 {
                     string EmailExist = "Email is already in use";
