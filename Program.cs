@@ -2,7 +2,9 @@ using System.Text;
 using Backend.Models;
 using Backend.Repo;
 using Backend.Services;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -15,10 +17,28 @@ builder.Services.AddDbContext<LE_dbContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("LE_AppCon")!);
 });
 //////////////////////////////////////////For JWT ////////////////////////////
+builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+     .AddJwtBearer(options =>
+      {
+          options.SaveToken = true;
+          options.RequireHttpsMetadata = false;
+          options.TokenValidationParameters = new TokenValidationParameters
+          {
+              ValidateIssuer = true,
+              ValidateAudience = true,
+              ValidateLifetime = true,
+              ClockSkew = TimeSpan.Zero,
+              ValidateIssuerSigningKey = true,
+              ValidIssuer = builder.Configuration["Jwt:Issuer"],
+              ValidAudience = builder.Configuration["Jwt:Audience"],
+              IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!))
+          };
 
+      });
 
 
 /////////////////////////////////////////////////////////////////////
+
 builder.Services.AddControllersWithViews().AddNewtonsoftJson(options =>
 options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore)
 .AddNewtonsoftJson(options => options.SerializerSettings.ContractResolver = new DefaultContractResolver());
