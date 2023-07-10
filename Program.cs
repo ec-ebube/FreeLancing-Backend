@@ -48,6 +48,7 @@ builder.Services.AddScoped<IUser, UserServices>();
 builder.Services.AddScoped<IPortfolio, PortfolioServices>();
 builder.Services.AddScoped<IProject, ProjectServices>();
 builder.Services.AddScoped<IReview, ReviewServices>();
+builder.Services.AddScoped<ILogin, LoginServices>();
 
 
 builder.Services.AddControllers();

@@ -31,8 +31,8 @@ namespace Backend.Collective
             var Claims = new[]
             {
                 new Claim(ClaimTypes.NameIdentifier, authenticate!.Id!.ToString()!),
-                new Claim(ClaimTypes.Name, authenticate!.FirstName!),
-                new Claim(ClaimTypes.GivenName, authenticate!.LastName!),
+                // new Claim(ClaimTypes.Name, authenticate!.FirstName!),
+                // new Claim(ClaimTypes.GivenName, authenticate!.LastName!),
                 new Claim(ClaimTypes.Role, authenticate!.Role!),
                 new Claim(ClaimTypes.Email, authenticate!.Email!),
             };
@@ -41,7 +41,7 @@ namespace Backend.Collective
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(Claims),
-                Expires = DateTime.Now.AddYears(1),
+                Expires = DateTime.Now.AddDays(30),
                 SigningCredentials = credentials,
                 Issuer = _config.GetSection("Jwt:Issuer").Value,
                 Audience = _config.GetSection("Jwt:Audience").Value
@@ -63,5 +63,6 @@ namespace Backend.Collective
             // Serialize the mainToken object to JSON format
             return JsonConvert.SerializeObject(mainToken);
         }
+
     }
 }
