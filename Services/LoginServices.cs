@@ -81,5 +81,60 @@ namespace Backend.Services
                 return null!;
             }
         }
+
+
+
+        //////////////////////////////////////////For Portfolio///////////////////////////////////////////////////
+        public async Task<Authenticate_DTO> Authport(string email, string password)
+        {
+            try
+            {
+                var port = await _cbtContext!.Portfolios.Where(u => u.Email == email).FirstOrDefaultAsync();
+                if (port == null)
+                {
+                    return null!;
+                }
+                if (BCrypt.Net.BCrypt.Verify(password, port.PasswordHash))
+                {
+                    var authP = new Authenticate_DTO
+                    {
+                        Email = port.Email,
+                        Id = port.Id,
+                        FirstName = port.FirstName,
+                        LastName = port.LastName,
+                        PhoneNumber = port.PhoneNumber
+                        // Role = port.Role,
+                    };
+
+                    return authP;
+                }
+            }
+            catch (System.Exception ex)
+            {
+                // Log the exception or handle it appropriately.
+                // Return an error response if necessary.
+                Console.WriteLine(ex.Message);
+            }
+            return null!;
+        }
+
+        public async Task<Authenticate_DTO> LogP(string email, string password)
+        {
+            try
+            {
+                var port = await Authport(email, password);
+                if (port == null)
+                {
+                    return null!;
+                }
+                var genToken = new GenToken(_config);
+                port.Token = genToken.gen_Token(port);
+                return port;
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
+        }
     }
 }

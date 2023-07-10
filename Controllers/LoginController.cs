@@ -17,7 +17,7 @@ namespace Backend.Controllers
             _ilogin = ilogin;
         }
 
-        [HttpPost]
+        [HttpPost("loguser")]
         public async Task<ActionResult> login([FromForm] string Email, [FromForm] string password)
         {
             try
@@ -28,6 +28,24 @@ namespace Backend.Controllers
                     return NotFound();
                 }
                 return Ok(user);
+            }
+            catch (System.Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost("logport")]
+        public async Task<ActionResult> logport([FromForm] string Email, [FromForm] string password)
+        {
+            try
+            {
+                var portfolio = await _ilogin!.LogP(Email, password);
+                if (portfolio == null)
+                {
+                    return NotFound();
+                }
+                return Ok(portfolio);
             }
             catch (System.Exception ex)
             {
