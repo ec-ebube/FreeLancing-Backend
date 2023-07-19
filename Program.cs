@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json.Serialization;
+using Microsoft.AspNetCore.Cors;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -50,9 +51,8 @@ builder.Services.AddScoped<IProject, ProjectServices>();
 builder.Services.AddScoped<IReview, ReviewServices>();
 builder.Services.AddScoped<ILogin, LoginServices>();
 
-public void ConfigureServices(IServiceCollection services)
-{
-    services.AddCors(options =>
+
+    builder.Services.AddCors(options =>
     {
         options.AddPolicy("AllowAllOrigins",
             builder =>
@@ -62,7 +62,6 @@ public void ConfigureServices(IServiceCollection services)
                        .AllowAnyMethod();
             });
     });
-}
 
 
 builder.Services.AddControllers();
