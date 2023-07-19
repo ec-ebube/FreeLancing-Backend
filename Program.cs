@@ -50,6 +50,20 @@ builder.Services.AddScoped<IProject, ProjectServices>();
 builder.Services.AddScoped<IReview, ReviewServices>();
 builder.Services.AddScoped<ILogin, LoginServices>();
 
+public void ConfigureServices(IServiceCollection services)
+{
+    services.AddCors(options =>
+    {
+        options.AddPolicy("AllowAllOrigins",
+            builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyHeader()
+                       .AllowAnyMethod();
+            });
+    });
+}
+
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
@@ -57,6 +71,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
+
+app.UseCors("AllowAllOrigin");
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
