@@ -52,16 +52,12 @@ builder.Services.AddScoped<IReview, ReviewServices>();
 builder.Services.AddScoped<ILogin, LoginServices>();
 
 
-    builder.Services.AddCors(options =>
-    {
-        options.AddPolicy("AllowAllOrigins",
-            builder =>
-            {
-                builder.AllowAnyOrigin()
-                       .AllowAnyHeader()
-                       .AllowAnyMethod();
-            });
-    });
+builder.Services.AddCors(c =>
+{
+c.AddPolicy("AllowAllOrigin", options => options.AllowAnyOrigin()
+  .AllowAnyHeader()
+  .AllowAnyMethod());
+});
 
 
 builder.Services.AddControllers();

@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dxYHLPgug8oE7HsiqNaBICfmnxjZgdJ6sERTu9lCR0g=",
+  "Hash": "+IzvVBgp93mkfllhZBBdny+ODxpdCoA/6EpV1yJWc1U=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
@@ -16,6 +16,23 @@
     }
   ],
   "Assets": [
+    {
+      "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Images\\28a87c7a-7145-4731-aa63-7919f864bebd.jpg",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "Images/28a87c7a-7145-4731-aa63-7919f864bebd.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\28a87c7a-7145-4731-aa63-7919f864bebd.jpg"
+    },
     {
       "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Images\\3679f835-bffa-4a76-bb02-0664bbafaba4.jpg",
       "SourceId": "Backend",
@@ -49,6 +66,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Images\\3d1e2e2c-7925-4b1d-a02b-fae809f75891.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Images\\6f5235a9-3456-4d4d-a17f-ec9d9cf7f294.jpg",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "Images/6f5235a9-3456-4d4d-a17f-ec9d9cf7f294.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Images\\6f5235a9-3456-4d4d-a17f-ec9d9cf7f294.jpg"
     },
     {
       "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Images\\c0a64c9d-ee04-44c6-aad9-d3162e932aa4.jpg",
