@@ -29,7 +29,6 @@ namespace Backend.DTO
         [NotMapped]
         public IFormFile? ProfilePhoto { get; set; }
         public string? ProfilePath { get; set; }
-        [MaxLength(150)]
         public string? Bio { get; set; }
         public string? Skill { get; set; }
         public string? Category { get; set; }
