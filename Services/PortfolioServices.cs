@@ -120,6 +120,23 @@ namespace Backend.Services
             }
         }
 
+        public async Task<Portfolio> GetAPortfolio(string Id)
+        {
+            try
+            {
+                var portfolio = await _leContext!.Portfolios.FirstOrDefaultAsync(p => p.Id == Id);
+                if (portfolio == null)
+                {
+                    return null!;
+                }
+                return portfolio!;
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
+        }
+
         public async Task<IEnumerable<Portfolio>> GetPortfolios()
         {
             try

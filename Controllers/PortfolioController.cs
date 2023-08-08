@@ -103,6 +103,24 @@ namespace Backend.Controllers
             }
         }
 
+        [HttpGet("getsingle/{Id}")]
+        public async Task<ActionResult> GetAPortfolio([FromRoute] string Id)
+        {
+            try
+            {
+                var portfolio = await _iportfolio!.GetAPortfolio(Id);
+                if (portfolio == null!)
+                {
+                    return NotFound();
+                }
+                return Ok(portfolio);
+            }
+            catch (System.Exception)
+            {
+                return null!;
+            }
+        }
+
         [HttpPatch("update/{id}")]
         public async Task<ActionResult> UpdatePortfolio([FromForm] Portfolio_DTO portfolios, [FromRoute] string id)
         {
