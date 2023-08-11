@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "uBT+ka/1JW0feVuLCHymSRtOCjop3k74cOFA7lTSyfE=",
+  "Hash": "mWdrkn7v4DLT+JDqJmtdt/V7NCoAGkbdEmzZq2FnwFk=",
   "Source": "Backend",
   "BasePath": "_content/Backend",
   "Mode": "Default",
@@ -695,6 +695,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\Projects\\Images\\e7859ba8-7ed8-45bc-91fc-7988914e11da.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Projects\\Videos\\02280055-d751-4061-ab90-d8bf4bd51fb5.mp4",
+      "SourceId": "Backend",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\",
+      "BasePath": "_content/Backend",
+      "RelativePath": "Projects/Videos/02280055-d751-4061-ab90-d8bf4bd51fb5.mp4",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\Projects\\Videos\\02280055-d751-4061-ab90-d8bf4bd51fb5.mp4"
     },
     {
       "Identity": "C:\\Users\\Onwe\\Documents\\011_CSharp_World\\Little_Effect\\Backend\\wwwroot\\Projects\\Videos\\1627bd87-b55f-43a0-ad4c-b0e7f5aa3842.mp4",
